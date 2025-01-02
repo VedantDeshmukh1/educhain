@@ -25,11 +25,9 @@ import base64
 import os
 from PIL import Image
 import io
-
-# Update the QuestionType definition
-
 import random
 
+#Question Types for Generation
 QuestionType = Literal["Multiple Choice", "Short Answer", "True/False", "Fill in the Blank"]
 OutputFormatType = Literal["pdf", "csv"]
 
@@ -433,6 +431,7 @@ class QnAEngine:
 
         return structured_output
 
+    
     def _extract_video_id(self, url: str) -> str:
         """Extract YouTube video ID from URL."""
         pattern = r'(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(?:embed\/)?(?:v\/)?(?:shorts\/)?(?:live\/)?(?:feature=player_embedded&v=)?(?:e\/)?(?:\/)?([^\s&amp;?#]+)'
@@ -487,6 +486,7 @@ class QnAEngine:
             else:
                 raise ValueError(f"Error fetching transcript: {str(e)}")
 
+    
     def generate_questions_from_youtube(
         self,
         url: str,
@@ -552,6 +552,7 @@ class QnAEngine:
         except Exception as e:
             raise Exception(f"Unexpected error processing YouTube video: {str(e)}")
 
+    
     def _load_image(self, source: str) -> str:
         """Load and encode image from file or URL"""
         try:
@@ -571,6 +572,7 @@ class QnAEngine:
         except Exception as e:
             raise ValueError(f"Error loading image: {str(e)}")
 
+    
     def solve_doubt(
         self,
         image_source: str,
